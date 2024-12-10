@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<!-- Puts all the pieces (urdf, control, simulation) of the protobot together -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="protobot">
+    <xacro:arg name="prefix" default="" />
+    <xacro:arg name="use_gazebo" default="false" />
+    <!-- TODO: What is mock hardware? -->
+    <xacro:arg name="use_mock_hardware" default="false" />
+
+    <!-- Import different pieces of the protobot -->
+    <!-- RVIZ colors -->
+    <xacro:include filename="$(find protobot_description)/urdf/materials.xacro" />
+
+    <!-- Dummy link is used as root (for gazebo) -->
+    <link name="base_link"/>
+
+    <!-- Use macros from imported files to define the full protobot -->
+    <!-- Core URDF -->
+    <xacro:include filename="$(find protobot_description)/urdf/protobot_core.xacro" />
+    <xacro:protobot_core parent="base_link" prefix="$(arg prefix)">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:protobot_core>
+
+    <!-- ROS2 Control -->
+    <!-- <xacro:include filename="$(find protobot_description)/urdf/protobot_control.xacro" />
+    <xacro:protobot_control name="protobot" prefix="$(arg prefix)" use_gazebo="$(arg use_gazebo)" /> -->
+    
+    <!-- Gazebo-specific URDF -->
+    <!-- <xacro:if value="$(arg use_gazebo)">
+        <xacro:include filename="$(find protobot_description)/urdf/protobot_gazebo.xacro" />
+        <xacro:protobot_gazebo prefix="$(arg prefix)"/>
+    </xacro:if> -->
+
+</robot>
