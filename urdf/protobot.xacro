@@ -4,8 +4,6 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="protobot">
     <xacro:arg name="prefix" default="" />
     <xacro:arg name="use_gazebo" default="false" />
-    <!-- TODO: What is mock hardware? -->
-    <xacro:arg name="use_mock_hardware" default="false" />
 
     <!-- Import different pieces of the protobot -->
     <!-- RVIZ colors -->
@@ -22,13 +20,13 @@
     </xacro:protobot_core>
 
     <!-- ROS2 Control -->
-    <!-- <xacro:include filename="$(find protobot_description)/urdf/protobot_control.xacro" />
-    <xacro:protobot_control name="protobot" prefix="$(arg prefix)" use_gazebo="$(arg use_gazebo)" /> -->
+    <xacro:include filename="$(find protobot_description)/urdf/protobot_control.xacro" />
+    <xacro:protobot_ros2_control name="protobot" prefix="$(arg prefix)" use_gazebo="$(arg use_gazebo)" />
     
     <!-- Gazebo-specific URDF -->
-    <!-- <xacro:if value="$(arg use_gazebo)">
+    <xacro:if value="$(arg use_gazebo)">
         <xacro:include filename="$(find protobot_description)/urdf/protobot_gazebo.xacro" />
         <xacro:protobot_gazebo prefix="$(arg prefix)"/>
-    </xacro:if> -->
+    </xacro:if>
 
 </robot>

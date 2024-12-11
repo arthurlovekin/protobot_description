@@ -56,8 +56,8 @@ Tutorials/Documentation:
 Notes:
 - Generate urdf from xacro: `xacro <model_name>.xacro > <model_name>.urdf`
 - Convert urdf to pdf graph: `urdf_to_graphviz ./protobot.urdf protobot`
-- Colons in XML comments in the URDF can break the parsing
 - convert urdf to sdf: `gz sdf -p protobot.urdf > protobot.sdf`
+- Colons in XML comments in the URDF can break the parsing
 
 I was having trouble getting Gazebo to find the meshes in protobot_core.xacro
 (dynamically setting GZ_SIM_RESOURCE_PATH to find the protobot_description 
