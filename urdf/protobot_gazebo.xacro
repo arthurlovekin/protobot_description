@@ -34,10 +34,12 @@
     </gazebo>
 
     <!-- ros2 control plugin -->
-    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-        <parameters>$(find protobot_bringup)/config/protobot_controllers.yaml</parameters>
-    </plugin>
-
+    <gazebo>
+        <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+            <parameters>$(find protobot_bringup)/config/controllers.yaml</parameters>
+            <parameters>$(find protobot_bringup)/config/controllers_use_sim_time.yaml</parameters>
+        </plugin>
+    </gazebo>
 
   </xacro:macro>
 
