@@ -9,15 +9,10 @@
     <!-- RVIZ colors -->
     <xacro:include filename="$(find protobot_description)/urdf/materials.xacro" />
 
-    <!-- Dummy link is used as root (for gazebo) -->
-    <link name="base_link"/>
-
     <!-- Use macros from imported files to define the full protobot -->
     <!-- Core URDF -->
     <xacro:include filename="$(find protobot_description)/urdf/protobot_core.xacro" />
-    <xacro:protobot_core parent="base_link" prefix="$(arg prefix)">
-        <origin xyz="0 0 0" rpy="0 0 0" />
-    </xacro:protobot_core>
+    <xacro:protobot_core prefix="$(arg prefix)"/>
 
     <!-- ROS2 Control -->
     <xacro:include filename="$(find protobot_description)/urdf/protobot_control.xacro" />
