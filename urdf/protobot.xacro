@@ -14,6 +14,12 @@
     <xacro:include filename="$(find protobot_description)/urdf/protobot_core.xacro" />
     <xacro:protobot_core prefix="$(arg prefix)"/>
 
+    <!-- Camera -->
+    <xacro:include filename="$(find protobot_description)/urdf/camera.xacro" />
+    <xacro:camera parent="chassis" prefix="$(arg prefix)">
+        <origin xyz="0.15 0 0" rpy="0 0 0" />
+    </xacro:camera>
+
     <!-- ROS2 Control -->
     <xacro:include filename="$(find protobot_description)/urdf/protobot_control.xacro" />
     <xacro:protobot_ros2_control name="protobot" prefix="$(arg prefix)" use_gazebo="$(arg use_gazebo)" />

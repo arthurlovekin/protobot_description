@@ -17,7 +17,7 @@ def generate_launch_description():
     rviz_config_dir = PathJoinSubstitution([
         FindPackageShare('protobot_description'),
         'rviz', 
-        'protobot.rviz'
+        'protobot_core.rviz'
     ])
     
     rviz_node = Node(
