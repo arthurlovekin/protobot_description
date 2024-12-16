@@ -92,7 +92,7 @@
       <parent link="${prefix}chassis"/>
       <child link="${prefix}right_wheel"/>
       <origin xyz="0 ${-chassis_length/2} ${wheel_axis_vertical_offset}" rpy="${PI/2} 0 0"/>
-      <axis xyz="0 0 1"/>
+      <axis xyz="0 0 -1"/> <!-- Note that "Forward" rotation is opposite compared to the left wheel -->
       <!-- <dynamics damping="0.2"/>
       <limit effort="100" velocity="1.0"/> -->
     </joint>
