@@ -50,8 +50,10 @@ Visual overview from [Articulated Robotics](https://articulatedrobotics.xyz/tuto
 Tutorials/Documentation:
 - [ROS2 Control DiffBOt](https://control.ros.org/jazzy/doc/ros2_control_demos/example_2/doc/userdoc.html#diffbot)
 - [ROS2 Control Demos example_2 (DiffBot)](https://github.com/ros-controls/ros2_control_demos/tree/master/example_2)
-- [Articulated Robotics](https://articulatedrobotics.xyz/tutorials/ready-for-ros/urdf)
 - [ROS2 Control Demos example_9 (Gazebo)](https://github.com/ros-controls/ros2_control_demos/tree/master/example_9)
+- [Articulated Robotics](https://articulatedrobotics.xyz/tutorials/ready-for-ros/urdf)
+- [Articulated Robotics: Upgrading to the new Gazebo](https://www.youtube.com/watch?v=fH4gkIFZ6W8) (the [git diff](https://github.com/joshnewans/articubot_one/commit/e8a355fe8eb52c5a40a5240347bc204350a61266#diff-72e9e1fd8c3442d0d4c38ef820c75a43b9abecf357e791b4ffeaa1c5a9fe30ec) is helpful)
+
 
 Notes:
 - Generate urdf from xacro: `xacro <model_name>.xacro > <model_name>.urdf`
@@ -70,3 +72,5 @@ to
 Other options would be to add a .dsv.in hook to the protobot_description package 
 that adds the meshes to the GZ_SIM_RESOURCE_PATH, or figure out a way to set 
 the GZ_SIM_RESOURCE_PATH dynamically from the protobot_gazebo package.
+
+Along the way my ros2 topics stopped publishing; not sure why. Debug with `ps aux | grep ros` to see if any processes are still running that should have shut down, and `printenv | grep ROS` to make sure network discovery is configured correctly.
