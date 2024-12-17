@@ -61,7 +61,7 @@ Notes:
 - convert urdf to sdf: `gz sdf -p protobot.urdf > protobot.sdf`
 - Colons in XML comments in the URDF can break the parsing
 
-I was having trouble getting Gazebo to find the meshes in protobot_core.xacro
+I was having trouble getting Gazebo to find the meshes in protobot_core.urdf.xacro
 (dynamically setting GZ_SIM_RESOURCE_PATH to find the protobot_description 
 package was hard). To fix this, I changed the syntax to include meshes from 
 `<mesh filename="package://protobot_description/meshes/collision_wheel_v4.stl"/>`

@@ -70,4 +70,4 @@ def test_urdf_xacro(description_package, description_file):
 
 
 if __name__ == "__main__":
-    test_urdf_xacro("protobot_description", "protobot.xacro")
+    test_urdf_xacro("protobot_description", "protobot.urdf.xacro")

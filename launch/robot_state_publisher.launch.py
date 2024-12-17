@@ -31,7 +31,7 @@ def generate_launch_description():
             " ",
             PathJoinSubstitution([
                 FindPackageShare("protobot_description"), "urdf", 
-                "protobot.xacro"
+                "protobot.urdf.xacro"
             ]),
             " ",
             "prefix:=",
