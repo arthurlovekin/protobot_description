@@ -2,38 +2,24 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 <!-- Modified from: https://github.com/ros-controls/ros2_control_demos/blob/master/ros2_control_demo_description/diffbot/urdf/diffbot_description.urdf.xacro -->
 
-  <xacro:macro name="protobot_core" params="prefix">
-
-    <!-- TODO: Set these as macro parameters 
-      prefix:='' 
-      chassis_mass:='1.0' 
-      chassis_length:='0.3' 
-      chassis_width:='0.25' 
-      chassis_height:='0.15' 
-      wheel_base:='0.31' 
-      wheel_mass:='0.2' 
-      wheel_width:='0.030' 
-      wheel_radius:='0.06' 
-      wheel_axis_vertical_offset:='0.04' 
-      wheel_axis_horizontal_offset:='0.28' 
-      caster_wheel_radius:='0.02' 
-      caster_wheel_mass:='0.1' 
-  -->
+  <xacro:macro name="protobot_core" params="prefix
+    chassis_mass:=1.0
+    chassis_length:=0.3
+    chassis_width:=0.25
+    chassis_height:=0.15
+    wheel_base:=0.31
+    wheel_mass:=0.2
+    wheel_width:=0.030
+    wheel_radius:=0.06
+    wheel_axis_vertical_offset:=0.04
+    wheel_axis_horizontal_offset:=0.28
+    caster_wheel_radius:=0.02
+    caster_wheel_mass:=0.1">
+    <!-- to keep the robot horizontal, set:
+      caster_wheel_radius = wheel_radius - wheel_axis_vertical_offset-->
 
     <!-- Constants for robot dimensions -->
     <xacro:property name="PI" value="3.1415926535897931"/>
-    <xacro:property name="chassis_mass" value="1.0" /> <!-- arbitrary value for base mass -->
-    <xacro:property name="chassis_length" value="0.3" />
-    <xacro:property name="chassis_width" value="0.25" />
-    <xacro:property name="chassis_height" value="0.3" />
-    <xacro:property name="wheel_base" value="0.31" /> <!-- make this bigger than chassis_width -->
-    <xacro:property name="wheel_mass" value="0.2" /> <!-- arbitrary value for wheel mass -->
-    <xacro:property name="wheel_width" value="0.030" />
-    <xacro:property name="wheel_radius" value="0.06" />
-    <xacro:property name="wheel_axis_vertical_offset" value="0.04" /> <!-- signed vertical distance from bottom of chassis to wheel axis -->
-    <xacro:property  name="wheel_axis_horizontal_offset" value="${chassis_length - 0.02}" /> <!-- signed horizontal distance from back of chassis to wheel axis -->
-    <xacro:property name="caster_wheel_mass" value="0.1" /> <!-- arbitrary value for caster wheel mass -->
-    <xacro:property name="caster_wheel_radius" value="${wheel_radius - wheel_axis_vertical_offset}" />
 
     <!-- Dummy link with no inertiais used as root (for gazebo) -->
     <link name="base_link"/>
