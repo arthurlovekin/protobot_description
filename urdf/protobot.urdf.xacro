@@ -10,6 +10,7 @@
     <xacro:include filename="$(find protobot_description)/urdf/materials.urdf.xacro" />
 
     <!-- Use macros from imported files to define the full protobot -->
+    <!--TODO: Parametrize the core macro so that camera and IMU can be placed without hardcoding -->
     <!-- Core URDF -->
     <xacro:include filename="$(find protobot_description)/urdf/protobot_core.urdf.xacro" />
     <xacro:protobot_core prefix="$(arg prefix)"/>
@@ -17,13 +18,13 @@
     <!-- Camera -->
     <xacro:include filename="$(find protobot_description)/urdf/camera.urdf.xacro" />
     <xacro:camera parent="chassis" prefix="$(arg prefix)">
-        <origin xyz="0.15 0 0" rpy="0 0 0" />
+        <origin xyz="0.3 0 0.1" rpy="0 0 0" />
     </xacro:camera>
 
     <!-- Inertial Measurement Unit (IMU) -->
     <xacro:include filename="$(find protobot_description)/urdf/imu_sensor.urdf.xacro" />
     <xacro:imu_sensor prefix="$(arg prefix)" parent="chassis">
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0.28 0 0.04" rpy="0 0 0" />
     </xacro:imu_sensor>
 
     <!-- ROS2 Control -->
