@@ -6,15 +6,16 @@
 
   <!-- Constants for robot dimensions -->
   <xacro:property name="PI" value="3.1415926535897931"/>
-  <xacro:property name="chassis_mass" value="0.5" /> <!-- arbitrary value for base mass -->
+  <xacro:property name="chassis_mass" value="1.0" /> <!-- arbitrary value for base mass -->
   <xacro:property name="chassis_length" value="0.3" />
   <xacro:property name="chassis_width" value="0.25" />
   <xacro:property name="chassis_height" value="0.15" />
   <xacro:property name="wheel_base" value="0.31" /> <!-- make this bigger than chassis_width -->
-  <xacro:property name="wheel_mass" value="0.3" /> <!-- arbitrary value for wheel mass -->
+  <xacro:property name="wheel_mass" value="0.2" /> <!-- arbitrary value for wheel mass -->
   <xacro:property name="wheel_width" value="0.030" />
-  <xacro:property name="wheel_radius" value="0.05" />
-  <xacro:property name="wheel_axis_vertical_offset" value="-0.04" /> <!-- signed distance from chassis center to wheel axis -->
+  <xacro:property name="wheel_radius" value="0.06" />
+  <xacro:property name="wheel_axis_vertical_offset" value="-0.04" /> <!-- signed vertical distance from chassis center to wheel axis -->
+  <xacro:property  name="wheel_axis_horizontal_offset" value="${chassis_length/2 - 0.02}" /> <!-- signed horizontal distance from chassis center to wheel axis -->
   <xacro:property name="caster_wheel_mass" value="0.1" /> <!-- arbitrary value for caster wheel mass -->
   <xacro:property name="caster_wheel_radius" value="${-wheel_axis_vertical_offset + wheel_radius - chassis_height/2}" />
 
@@ -57,7 +58,7 @@
     <joint name="${prefix}left_wheel_joint" type="continuous">
       <parent link="${prefix}chassis"/>
       <child link="${prefix}left_wheel"/>
-      <origin xyz="0 ${chassis_length/2} ${wheel_axis_vertical_offset}" rpy="${-PI/2} 0 0"/>
+      <origin xyz="${wheel_axis_horizontal_offset} ${chassis_length/2} ${wheel_axis_vertical_offset}" rpy="${-PI/2} 0 0"/>
       <axis xyz="0 0 1"/>
       <!-- <dynamics damping="0.2"/>
       <limit effort="100" velocity="1.0"/> -->
@@ -94,7 +95,7 @@
     <joint name="${prefix}right_wheel_joint" type="continuous">
       <parent link="${prefix}chassis"/>
       <child link="${prefix}right_wheel"/>
-      <origin xyz="0 ${-chassis_length/2} ${wheel_axis_vertical_offset}" rpy="${PI/2} 0 0"/>
+      <origin xyz="${wheel_axis_horizontal_offset} ${-chassis_length/2} ${wheel_axis_vertical_offset}" rpy="${PI/2} 0 0"/>
       <axis xyz="0 0 -1"/> <!-- Note that "Forward" rotation is opposite compared to the left wheel -->
       <!-- <dynamics damping="0.2"/>
       <limit effort="100" velocity="1.0"/> -->
@@ -128,14 +129,14 @@
         </inertial>
       </link>
 
-    <joint name="${prefix}front_caster_wheel_joint" type="fixed">
+    <!-- <joint name="${prefix}front_caster_wheel_joint" type="fixed">
       <parent link="${prefix}chassis"/>
       <child link="${prefix}front_caster_wheel"/>
       <origin xyz="${chassis_length/2 - caster_wheel_radius} 0 ${-chassis_height/2}" rpy="0 0 0"/>
-    </joint>
+    </joint> -->
 
     <!-- caster front wheel Link -->
-    <link name="${prefix}front_caster_wheel">
+    <!-- <link name="${prefix}front_caster_wheel">
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -159,7 +160,7 @@
           iyy="${caster_wheel_mass * 0.4 * (caster_wheel_radius * caster_wheel_radius)}" iyz="0.0"
           izz="${caster_wheel_mass * 0.4 * (caster_wheel_radius * caster_wheel_radius)}"/>
         </inertial>
-      </link>
+      </link> -->
 
     <joint name="${prefix}rear_caster_wheel_joint" type="fixed">
       <parent link="${prefix}chassis"/>
