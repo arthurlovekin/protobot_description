@@ -16,16 +16,18 @@
 
       <joint name="${prefix}left_wheel_joint">
         <command_interface name="velocity">
-          <param name="min">-10</param>
-          <param name="max">10</param>
+        <!-- Currently unlimited; set to something reasonable later-->
+          <!-- <param name="min">-10</param>
+          <param name="max">10</param> -->
         </command_interface>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
       </joint>
       <joint name="${prefix}right_wheel_joint">
         <command_interface name="velocity">
-          <param name="min">-10</param>
-          <param name="max">10</param>
+          <!-- Currently unlimited; set to something reasonable later-->
+          <!-- <param name="min">-10</param>
+          <param name="max">10</param> -->
         </command_interface>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
