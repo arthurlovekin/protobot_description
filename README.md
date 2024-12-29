@@ -54,6 +54,8 @@ Tutorials/Documentation:
 - [Articulated Robotics](https://articulatedrobotics.xyz/tutorials/ready-for-ros/urdf)
 - [Articulated Robotics: Upgrading to the new Gazebo](https://www.youtube.com/watch?v=fH4gkIFZ6W8) (the [git diff](https://github.com/joshnewans/articubot_one/commit/e8a355fe8eb52c5a40a5240347bc204350a61266#diff-72e9e1fd8c3442d0d4c38ef820c75a43b9abecf357e791b4ffeaa1c5a9fe30ec) is helpful)
 - [Automatic Addison: Yahboom rosmaster](https://github.com/automaticaddison/yahboom_rosmaster/tree/main/yahboom_rosmaster_description)
+- [SDF Format Docs](http://sdformat.org/spec?ver=1.11&elem=collision) (this is 
+helpful for debuggind sdf errors) 
 
 
 Notes:
