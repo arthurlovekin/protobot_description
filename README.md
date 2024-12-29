@@ -59,10 +59,11 @@ helpful for debuggind sdf errors)
 
 
 Notes:
-- Generate urdf from xacro: `xacro <model_name>.xacro > <model_name>.urdf`
+- Generate urdf from xacro: `xacro <model_name>.xacro use_gazebo:=true > <model_name>.urdf` (note that use_gazebo is an arg we defined that will default to false if left out)
 - Convert urdf to pdf graph: `urdf_to_graphviz ./protobot.urdf protobot`
 - convert urdf to sdf: `gz sdf -p protobot.urdf > protobot.sdf`
 - Colons in XML comments in the URDF can break the parsing
+I recommend running these commands until you have resolved all warnings, and the urdf and sdf (especially friction properties, colors, etc.) include all tags as you expect.
 
 I was having trouble getting Gazebo to find the meshes in protobot_core.urdf.xacro
 (dynamically setting GZ_SIM_RESOURCE_PATH to find the protobot_description 

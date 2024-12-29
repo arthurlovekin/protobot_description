@@ -34,13 +34,13 @@
 
     <!-- Camera -->
     <xacro:include filename="$(find protobot_description)/urdf/camera.urdf.xacro" />
-    <xacro:camera parent="chassis" prefix="$(arg prefix)">
+    <xacro:camera parent="chassis" prefix="$(arg prefix)" use_gazebo="$(arg use_gazebo)">
         <origin xyz="${chassis_length} 0 0.1" rpy="0 0 0" />
     </xacro:camera>
 
     <!-- Inertial Measurement Unit (IMU) -->
     <xacro:include filename="$(find protobot_description)/urdf/imu_sensor.urdf.xacro" />
-    <xacro:imu_sensor prefix="$(arg prefix)" parent="chassis">
+    <xacro:imu_sensor prefix="$(arg prefix)" parent="chassis" use_gazebo="$(arg use_gazebo)">
         <origin xyz="${wheel_axis_horizontal_offset} 0 ${wheel_axis_vertical_offset}" rpy="0 0 0" />
     </xacro:imu_sensor>
 

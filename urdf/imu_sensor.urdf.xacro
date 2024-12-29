@@ -19,6 +19,7 @@
         always_on:=true
         visualize:=false
         *origin
+        use_gazebo:=false
     ">
 
         <link name="${prefix}imu_link">
@@ -49,15 +50,17 @@
             <xacro:insert_block name="origin"/>
         </joint>
 
-        <gazebo reference="${prefix}imu_link">
-            <material>Gazebo/Blue</material>
-            <sensor name="${prefix}imu_sensor" type="imu">
-                <topic>${topic_name}</topic>
-                <update_rate>${update_rate}</update_rate>
-                <always_on>${always_on}</always_on>
-                <visualize>${visualize}</visualize>
-                <!-- <gz_frame_id>${prefix}imu_link</gz_frame_id> -->
-            </sensor>
-        </gazebo>
+        <xacro:if value="${use_gazebo}">
+            <gazebo reference="${prefix}imu_link">
+                <material>Gazebo/Blue</material>
+                <sensor name="${prefix}imu_sensor" type="imu">
+                    <topic>${topic_name}</topic>
+                    <update_rate>${update_rate}</update_rate>
+                    <always_on>${always_on}</always_on>
+                    <visualize>${visualize}</visualize>
+                    <!-- <gz_frame_id>${prefix}imu_link</gz_frame_id> -->
+                </sensor>
+            </gazebo>
+        </xacro:if>
     </xacro:macro>
 </robot>
