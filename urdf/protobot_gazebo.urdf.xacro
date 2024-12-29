@@ -14,6 +14,7 @@
         <mu2>1.0</mu2>
         <kp>1e10</kp> <!-- stiffness -->
         <kd>1e10</kd> <!-- damping -->
+        <fdir1>0 0 1</fdir1> <!-- friction direction (z-axis is along the wheel axis) -->
         <material>Gazebo/Red</material>
     </gazebo>
 
@@ -22,12 +23,15 @@
         <mu2>1.0</mu2>
         <kp>1e10</kp> <!-- stiffness -->
         <kd>1e10</kd> <!-- damping -->
+        <fdir1>0 0 1</fdir1> <!-- friction direction (z-axis is along the wheel axis) -->
         <material>Gazebo/Red</material>
     </gazebo>
 
     <gazebo reference="${prefix}caster_wheel">
         <mu1>0.000001</mu1> <!-- contact friction coefficient -->
         <mu2>0.000001</mu2>
+        <kp>1e10</kp> <!-- stiffness -->
+        <kd>1e10</kd> <!-- damping -->
         <material>Gazebo/Red</material>
     </gazebo>
 
