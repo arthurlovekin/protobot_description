@@ -5,32 +5,30 @@
   <xacro:macro name="protobot_gazebo" params="prefix">
 
     <!-- Define the friction and colors to use in simulation (Gazebo is unable to use the same <material> tags as the URDF) -->
-    <gazebo reference="chassis_link">
+    <gazebo reference="${prefix}chassis">
         <material>Gazebo/Blue</material>
     </gazebo>
 
-    <gazebo reference="left_wheel">
-        <mu1>0.8</mu1> <!-- contact friction: rubber on dry asphalt -->
-        <mu2>0.8</mu2>
-        <material>Gazebo/Black</material>
+    <gazebo reference="${prefix}left_wheel">
+        <mu1>1.0</mu1> <!-- contact friction -->
+        <mu2>1.0</mu2>
+        <kp>1e10</kp> <!-- stiffness -->
+        <kd>1e10</kd> <!-- damping -->
+        <material>Gazebo/Red</material>
     </gazebo>
 
-    <gazebo reference="right_wheel">
-        <mu1>0.8</mu1> <!-- contact friction: rubber on dry asphalt -->
-        <mu2>0.8</mu2>
-        <material>Gazebo/Black</material>
+    <gazebo reference="${prefix}right_wheel">
+        <mu1>1.0</mu1> <!-- contact friction -->
+        <mu2>1.0</mu2>
+        <kp>1e10</kp> <!-- stiffness -->
+        <kd>1e10</kd> <!-- damping -->
+        <material>Gazebo/Red</material>
     </gazebo>
 
-    <gazebo reference="front_caster_wheel">
-        <mu1>0.001</mu1> <!-- contact friction coefficient -->
-        <mu2>0.001</mu2>
-        <material>Gazebo/Black</material>
-    </gazebo>
-
-    <gazebo reference="rear_caster_wheel">
-        <mu1>0.001</mu1> <!-- contact friction coefficient -->
-        <mu2>0.001</mu2>
-        <material>Gazebo/Black</material>
+    <gazebo reference="${prefix}caster_wheel">
+        <mu1>0.000001</mu1> <!-- contact friction coefficient -->
+        <mu2>0.000001</mu2>
+        <material>Gazebo/Red</material>
     </gazebo>
 
     <!-- ros2 control plugin -->

@@ -131,14 +131,14 @@
       </inertial>
     </link>
 
-    <joint name="${prefix}rear_caster_wheel_joint" type="fixed">
+    <joint name="${prefix}caster_wheel_joint" type="fixed">
       <parent link="${prefix}chassis"/>
-      <child link="${prefix}rear_caster_wheel"/>
+      <child link="${prefix}caster_wheel"/>
       <origin xyz="${caster_wheel_radius} 0 0" rpy="0 0 0"/>
     </joint>
 
     <!-- caster rear wheel Link -->
-    <link name="${prefix}rear_caster_wheel">
+    <link name="${prefix}caster_wheel">
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
