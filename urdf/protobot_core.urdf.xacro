@@ -11,18 +11,28 @@
     wheel_mass:=0.2
     wheel_width:=0.030
     wheel_radius:=0.06
-    wheel_axis_vertical_offset:=0.04
-    wheel_axis_horizontal_offset:=0.28
+    wheel_axis_wrt_chassis_vertical:=0.04
+    wheel_axis_wrt_chassis_horizontal:=0.28
     caster_wheel_radius:=0.02
     caster_wheel_mass:=0.1">
     <!-- to keep the robot horizontal, set:
-      caster_wheel_radius = wheel_radius - wheel_axis_vertical_offset-->
+      caster_wheel_radius = wheel_radius - wheel_axis_wrt_chassis_vertical-->
 
     <!-- Constants for robot dimensions -->
     <xacro:property name="PI" value="3.1415926535897931"/>
 
-    <!-- Dummy link with no inertiais used as root (for gazebo) -->
+    <!-- Frame at the midpoint of the wheel axis serves a the pendulum pivot point, and has no inertial properties for gazebo. -->
     <link name="base_link"/>
+
+    <!-- Coordinate frame that is analogous to the mass of the pendulum. 
+    It is located at the robot's center of mass, and the x-axis intersects the base_link. -->
+    <!-- <link name="${prefix}pendulum_mass"/> -->
+
+    <!-- <joint name="${prefix}pendulum_mass_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="${prefix}pendulum_mass"/>
+      <origin xyz="${-wheel_axis_wrt_chassis_horizontal+chassis_length/2} 0 ${-wheel_axis_wrt_chassis_vertical+chassis_height/2}" rpy="0 ${PI/2} 0"/>
+    </joint> -->
 
     <!-- Chassis Link -->
     <link name="${prefix}chassis">
@@ -54,13 +64,13 @@
     <joint name="${prefix}base_to_chassis_joint" type="fixed">
       <parent link="base_link"/>
       <child link="${prefix}chassis"/>
-      <origin xyz="${-wheel_axis_horizontal_offset} 0 ${-wheel_axis_vertical_offset}" rpy="0 0 0" />
+      <origin xyz="${-wheel_axis_wrt_chassis_horizontal} 0 ${-wheel_axis_wrt_chassis_vertical}" rpy="0 0 0" />
     </joint>
 
     <joint name="${prefix}left_wheel_joint" type="continuous">
-      <parent link="${prefix}chassis"/>
+      <parent link="${prefix}base_link"/>
       <child link="${prefix}left_wheel"/>
-      <origin xyz="${wheel_axis_horizontal_offset} ${wheel_base/2} ${wheel_axis_vertical_offset}" rpy="${-PI/2} 0 0"/>
+      <origin xyz="0 ${wheel_base/2} 0" rpy="${-PI/2} 0 0"/>
       <axis xyz="0 0 1"/>
       <!-- <dynamics damping="0.2"/>
       <limit effort="100" velocity="1.0"/> -->
@@ -95,9 +105,9 @@
     </link>
 
     <joint name="${prefix}right_wheel_joint" type="continuous">
-      <parent link="${prefix}chassis"/>
+      <parent link="${prefix}base_link"/>
       <child link="${prefix}right_wheel"/>
-      <origin xyz="${wheel_axis_horizontal_offset} ${-wheel_base/2} ${wheel_axis_vertical_offset}" rpy="${PI/2} 0 0"/>
+      <origin xyz="0 ${-wheel_base/2} 0" rpy="${PI/2} 0 0"/>
       <axis xyz="0 0 -1"/> <!-- Note that "Forward" rotation is opposite compared to the left wheel -->
       <!-- <dynamics damping="0.2"/>
       <limit effort="100" velocity="1.0"/> -->

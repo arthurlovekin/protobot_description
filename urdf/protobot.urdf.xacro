@@ -10,8 +10,8 @@
     <xacro:include filename="$(find protobot_description)/urdf/materials.urdf.xacro" />
 
     <xacro:property name="chassis_length" value="0.3"/>
-    <xacro:property name="wheel_axis_horizontal_offset" value="${chassis_length - 0.02}"/>
-    <xacro:property name="wheel_axis_vertical_offset" value="0.04"/>
+    <xacro:property name="wheel_axis_wrt_chassis_horizontal" value="${chassis_length - 0.02}"/>
+    <xacro:property name="wheel_axis_wrt_chassis_vertical" value="0.04"/>
     <xacro:property name="wheel_radius" value="0.06"/>
 
     <!-- Use macros from imported files to define the full protobot -->
@@ -26,9 +26,9 @@
         wheel_mass="0.2"
         wheel_width="0.020"
         wheel_radius="${wheel_radius}"
-        wheel_axis_vertical_offset="${wheel_axis_vertical_offset}"
-        wheel_axis_horizontal_offset="${wheel_axis_horizontal_offset}"
-        caster_wheel_radius="${wheel_radius - wheel_axis_vertical_offset}"
+        wheel_axis_wrt_chassis_vertical="${wheel_axis_wrt_chassis_vertical}"
+        wheel_axis_wrt_chassis_horizontal="${wheel_axis_wrt_chassis_horizontal}"
+        caster_wheel_radius="${wheel_radius - wheel_axis_wrt_chassis_vertical}"
         caster_wheel_mass="0.1"
     />
 
@@ -41,7 +41,7 @@
     <!-- Inertial Measurement Unit (IMU) -->
     <xacro:include filename="$(find protobot_description)/urdf/imu_sensor.urdf.xacro" />
     <xacro:imu_sensor prefix="$(arg prefix)" parent="chassis" use_gazebo="$(arg use_gazebo)">
-        <origin xyz="${wheel_axis_horizontal_offset} 0 ${wheel_axis_vertical_offset}" rpy="0 0 0" />
+        <origin xyz="${wheel_axis_wrt_chassis_horizontal} 0 ${wheel_axis_wrt_chassis_vertical}" rpy="0 0 0" />
     </xacro:imu_sensor>
 
     <!-- ROS2 Control -->
