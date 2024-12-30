@@ -22,15 +22,18 @@
     <link name="base_link"/>
 
     <!-- Coordinate frame that is analogous to the mass of the pendulum. 
-    It is located at the robot's center of mass, and the x-axis intersects the base_link. -->
+    It is located at the robot's center of mass, and the z-axis intersects the base_link. -->
     <link name="${prefix}pendulum_mass"/>
+
+    <xacro:property name="mass_center_z" value="${-wheel_axis_wrt_chassis_vertical+chassis_height/2}"/>
+    <xacro:property name="mass_center_x" value="${-wheel_axis_wrt_chassis_horizontal+chassis_length/2}"/>
 
     <joint name="${prefix}pendulum_mass_joint" type="fixed">
       <parent link="base_link"/>
       <child link="${prefix}pendulum_mass"/>
       <origin 
-        xyz="${-wheel_axis_wrt_chassis_horizontal+chassis_length/2} 0 ${-wheel_axis_wrt_chassis_vertical+chassis_height/2}" 
-        rpy="0 ${atan2(-wheel_axis_wrt_chassis_vertical+chassis_height/2, -(-wheel_axis_wrt_chassis_horizontal+chassis_length/2))} 0"/>
+        xyz="${mass_center_x} 0 ${mass_center_z}" 
+        rpy="0 ${-atan2(-mass_center_x, mass_center_z)} 0"/>
     </joint>
 
     <!-- Chassis Link -->
