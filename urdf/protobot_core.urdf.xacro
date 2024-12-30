@@ -18,21 +18,20 @@
     <!-- to keep the robot horizontal, set:
       caster_wheel_radius = wheel_radius - wheel_axis_wrt_chassis_vertical-->
 
-    <!-- Constants for robot dimensions -->
-    <xacro:property name="PI" value="3.1415926535897931"/>
-
     <!-- Frame at the midpoint of the wheel axis serves a the pendulum pivot point, and has no inertial properties for gazebo. -->
     <link name="base_link"/>
 
     <!-- Coordinate frame that is analogous to the mass of the pendulum. 
     It is located at the robot's center of mass, and the x-axis intersects the base_link. -->
-    <!-- <link name="${prefix}pendulum_mass"/> -->
+    <link name="${prefix}pendulum_mass"/>
 
-    <!-- <joint name="${prefix}pendulum_mass_joint" type="fixed">
+    <joint name="${prefix}pendulum_mass_joint" type="fixed">
       <parent link="base_link"/>
       <child link="${prefix}pendulum_mass"/>
-      <origin xyz="${-wheel_axis_wrt_chassis_horizontal+chassis_length/2} 0 ${-wheel_axis_wrt_chassis_vertical+chassis_height/2}" rpy="0 ${PI/2} 0"/>
-    </joint> -->
+      <origin 
+        xyz="${-wheel_axis_wrt_chassis_horizontal+chassis_length/2} 0 ${-wheel_axis_wrt_chassis_vertical+chassis_height/2}" 
+        rpy="0 ${atan2(-wheel_axis_wrt_chassis_vertical+chassis_height/2, -(-wheel_axis_wrt_chassis_horizontal+chassis_length/2))} 0"/>
+    </joint>
 
     <!-- Chassis Link -->
     <link name="${prefix}chassis">
@@ -70,7 +69,7 @@
     <joint name="${prefix}left_wheel_joint" type="continuous">
       <parent link="${prefix}base_link"/>
       <child link="${prefix}left_wheel"/>
-      <origin xyz="0 ${wheel_base/2} 0" rpy="${-PI/2} 0 0"/>
+      <origin xyz="0 ${wheel_base/2} 0" rpy="${-pi/2} 0 0"/>
       <axis xyz="0 0 1"/>
       <!-- <dynamics damping="0.2"/>
       <limit effort="100" velocity="1.0"/> -->
@@ -107,7 +106,7 @@
     <joint name="${prefix}right_wheel_joint" type="continuous">
       <parent link="${prefix}base_link"/>
       <child link="${prefix}right_wheel"/>
-      <origin xyz="0 ${-wheel_base/2} 0" rpy="${PI/2} 0 0"/>
+      <origin xyz="0 ${-wheel_base/2} 0" rpy="${pi/2} 0 0"/>
       <axis xyz="0 0 -1"/> <!-- Note that "Forward" rotation is opposite compared to the left wheel -->
       <!-- <dynamics damping="0.2"/>
       <limit effort="100" velocity="1.0"/> -->

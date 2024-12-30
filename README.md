@@ -62,6 +62,7 @@ Notes:
 - Convert urdf to pdf graph: `urdf_to_graphviz ./protobot.urdf protobot`
 - convert urdf to sdf: `gz sdf -p protobot.urdf > protobot.sdf`
 - Colons in XML comments in the URDF can break the parsing
+- xacro expressions '${}' are evaluated using python with the math module as a namespace
 I recommend running these commands until you have resolved all warnings, and the urdf and sdf (especially friction properties, colors, etc.) include all tags as you expect. The default color is black; use different colors to make sure your component tags are read and there is no naming discrepancy.
 
 I was having trouble getting Gazebo to find the meshes in protobot_core.urdf.xacro
