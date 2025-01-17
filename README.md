@@ -54,16 +54,23 @@ Tutorials/Documentation:
 - [Articulated Robotics](https://articulatedrobotics.xyz/tutorials/ready-for-ros/urdf)
 - [Articulated Robotics: Upgrading to the new Gazebo](https://www.youtube.com/watch?v=fH4gkIFZ6W8) (the [git diff](https://github.com/joshnewans/articubot_one/commit/e8a355fe8eb52c5a40a5240347bc204350a61266#diff-72e9e1fd8c3442d0d4c38ef820c75a43b9abecf357e791b4ffeaa1c5a9fe30ec) is helpful)
 - [Automatic Addison: Yahboom rosmaster](https://github.com/automaticaddison/yahboom_rosmaster/tree/main/yahboom_rosmaster_description)
-- [SDF Format Docs](http://sdformat.org/spec?ver=1.11&elem=collision) and [The <gazebo> extension](http://sdformat.org/tutorials?tut=sdformat_urdf_extensions&cat=specification&) are useful for figuring out what tags are available in sdf, and how they convert from urdf to sdf.
-
+- [SDF Format Docs](http://sdformat.org/spec?ver=1.11&elem=collision) and [The <gazebo> extension](http://sdformat.org/tutorials?tut=sdformat_urdf_extensions&cat=specification&) are useful for figuring out what tags are available in sdf (eg. for camera and imu sensors), and how they convert from urdf to sdf.
+- [Xacro ROS wiki](http://wiki.ros.org/xacro)
+- [Nav2: Setting Up the URDF](https://docs.nav2.org/setup_guides/urdf/setup_urdf.html)
 
 Notes:
 - Generate urdf from xacro: `xacro <model_name>.xacro use_gazebo:=true > <model_name>.urdf` (note that use_gazebo is an arg we defined that will default to false if left out)
 - Convert urdf to pdf graph: `urdf_to_graphviz ./protobot.urdf protobot`
 - convert urdf to sdf: `gz sdf -p protobot.urdf > protobot.sdf`
 - Colons in XML comments in the URDF can break the parsing
-- xacro expressions '${}' are evaluated using python with the math module as a namespace
 I recommend running these commands until you have resolved all warnings, and the urdf and sdf (especially friction properties, colors, etc.) include all tags as you expect. The default color is black; use different colors to make sure your component tags are read and there is no naming discrepancy.
+- xacro expressions
+    - dollared-brackets within a string "${}" are evaluated using python with the math module as a namespace (eg. "${atan2(4,5)}")
+    - dollared-parenthesis within a string "$()" are evaluated using rospack (eg. "$(find package_name)/rest/of/path")
+
+My wheels skid weirdly when I move the robot at high speed in Gazebo. So far I 
+have tried to mitigate this by making spherical wheels and setting all friction 
+coefficients and the friction axis. It's still not perfect. 
 
 I was having trouble getting Gazebo to find the meshes in protobot_core.urdf.xacro
 (dynamically setting GZ_SIM_RESOURCE_PATH to find the protobot_description 
